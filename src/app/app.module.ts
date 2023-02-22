@@ -11,11 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 import { MainCalendarViewComponent } from './main-calendar-view/main-calendar-view.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
 
@@ -41,9 +43,11 @@ import { AppointmentDialogComponent } from './appointment-dialog/appointment-dia
     MatSidenavModule,
     MatNativeDateModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatSelectModule
   ],
-  providers: [MainCalendarViewComponent],
+  providers: [MainCalendarViewComponent, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

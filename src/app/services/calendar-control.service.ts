@@ -7,7 +7,7 @@ const DAY_MS = 60 * 60 * 24 * 1000;
   providedIn: 'root'
 })
 export class CalendarControlService {
-
+  
   private _dateSubject = new Subject<Date>();
   private _dateListSubject = new Subject<Array<Date>>();
 
