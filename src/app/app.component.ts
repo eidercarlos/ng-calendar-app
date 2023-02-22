@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
 import { CalendarControlService } from './services/calendar-control.service';
 
 @Component({
@@ -12,7 +14,8 @@ export class AppComponent {
   
   date = new Date();
 
-  constructor(private calendarService: CalendarControlService) {}
+  constructor(private calendarService: CalendarControlService,
+    public appointmentDialog: MatDialog) {}
 
   ngOnInit(){
 
@@ -24,6 +27,14 @@ export class AppComponent {
 
   setMonth(increment: number){
     this.calendarService.setMonth(increment);
+  }
+
+  openAppointmentDialog() {
+    const appointmentDialogRef = this.appointmentDialog.open(AppointmentDialogComponent);
+
+    appointmentDialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
   
 }

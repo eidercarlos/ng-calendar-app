@@ -14,12 +14,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MainCalendarViewComponent } from './main-calendar-view/main-calendar-view.component';
+import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainCalendarViewComponent
+    MainCalendarViewComponent,
+    AppointmentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,8 @@ import { MainCalendarViewComponent } from './main-calendar-view/main-calendar-vi
     MatProgressBarModule,
     MatSidenavModule,
     MatNativeDateModule,
+    MatBadgeModule,
+    MatDialogModule
   ],
   providers: [MainCalendarViewComponent],
   bootstrap: [AppComponent]
