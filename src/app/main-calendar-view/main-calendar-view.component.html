@@ -1,0 +1,6 @@
+<li class="days-of-week" *ngFor="let day of days"> {{day}} </li>
+<li class="days" *ngFor="let date of dateList"
+    [ngClass]="{grey: !isSameMonth(date)}"
+    (click)="selected.emit(date)">
+    {{date | date:'d'}}
+</li>

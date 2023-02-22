@@ -1,0 +1,82 @@
+<div class="navbar-container">
+
+  <!-- Top navbar -->
+  <mat-toolbar class="navbar mat-elevation-z6">
+
+    <div class="top-navbar-item-menu">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>       
+    </div>
+   
+   <div class="top-navbar-item">
+    <button mat-icon-button>
+      <mat-icon>calendar_today</mat-icon>
+      New Event
+    </button>
+   </div>
+
+
+  <button (click)="setMonth(-1)">&lt;</button>
+  {{date | date}}
+  <button (click)="setMonth(+1)">&gt;</button>
+
+    <div class="top-navbar-item">
+      <button mat-icon-button>
+        <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
+      </button>
+      <mat-menu #notificationMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+        <a mat-menu-item>
+          <span>Nova notificação 1</span>
+        </a>
+        <a mat-menu-item>
+          <span>Nova notificação 2</span>
+        </a>
+      </mat-menu>
+  
+      <!-- <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>        
+      </button>
+  
+      <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+        <a mat-menu-item [routerLink]="['/perfil/conta']">
+          <mat-icon>settings</mat-icon>
+          <span>Configurações</span>
+        </a>
+        <a mat-menu-item [routerLink]="['/auth/login']">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sair</span>
+        </a>
+      </mat-menu> -->
+    </div>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="navbar-sidenav-container">
+    <!-- Side nav -->
+    <mat-sidenav #snav class="sidenav">
+      
+      <!-- <mat-card class="demo-inline-calendar-card">
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+      <p>Selected date: {{selected}}</p> -->
+
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content class="sidenav-content">
+
+      <!-- <div class="progress-bar-container"> -->
+
+        <!-- <mat-progress-bar color="accent" mode="indeterminate">
+        </mat-progress-bar> -->
+
+      <!-- </div> -->
+      <app-main-calendar-view></app-main-calendar-view>
+
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>
