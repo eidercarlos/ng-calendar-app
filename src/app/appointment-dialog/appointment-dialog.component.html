@@ -6,15 +6,13 @@
         <mat-form-field class="example-full-width">
             <mat-label>Title</mat-label>
             <input matInput placeholder="Ex. A meeting with Joseph"
-            ngModel
+            [(ngModel)]="currentAppointment.title"
             name="title">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker"
-            ngModel
-            name="date">
+            <input name="date" matInput [matDatepicker]="picker" [(ngModel)]="currentAppointment.date">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>           
@@ -22,21 +20,24 @@
 
         <mat-form-field>
             <mat-label>Begin:</mat-label>
-            <mat-select>
+            <mat-select name="selectTimeToBegin" [(ngModel)]="currentAppointment.timeToBegin">
                 <mat-option *ngFor="let availableTimeToBegin of getAvailableTimeToBegin" [value]="availableTimeToBegin">{{availableTimeToBegin}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>End:</mat-label>
-            <mat-select>
+            <mat-select name="selectTimeToEnd" [(ngModel)]="currentAppointment.timeToEnd">
                 <mat-option *ngFor="let availableTimeToEnd of getAvailableTimeToEnd" [value]="availableTimeToEnd">{{availableTimeToEnd}}</mat-option>
             </mat-select>
         </mat-form-field>        
 
         <mat-form-field class="example-full-width">
             <mat-label>Description</mat-label>
-            <textarea matInput placeholder="Ex. How is going to be this appointment..."></textarea>
+            <textarea name="textDescription" [(ngModel)]="currentAppointment.description" 
+            matInput 
+            placeholder="Ex. How is going to be this appointment...">
+            </textarea>
         </mat-form-field>
 
     </form>  
@@ -44,5 +45,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createAppointment()">Create</button>
 </mat-dialog-actions>

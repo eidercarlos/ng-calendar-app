@@ -3,4 +3,25 @@
     [ngClass]="{grey: !isSameMonth(date)}"
     (click)="selected.emit(date)">
     {{date | date:'d'}}
+
+    <mat-chip-set>
+        <mat-chip
+            *ngFor="let appt of getAppointmentListByDate(date)">
+            {{appt.title}}
+        </mat-chip>
+    </mat-chip-set>
+
+    <!-- <mat-chip-set
+    class="example-chip"
+    cdkDropList 
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)">
+    <mat-chip
+        class="example-box"
+        cdkDrag
+        *ngFor="let appt of getAppointmentListByDate(date)">
+        {{appt.title}}
+    </mat-chip>
+    </mat-chip-set>     -->
+
 </li>

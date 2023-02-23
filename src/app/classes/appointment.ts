@@ -1,19 +1,17 @@
 export class appointment{
+    id: number;
     title: string;
     date: Date;
-    timeToBeginHour: number;
-    timeToBeginMinutes: number;
-    timeToEndHour: number;
-    timeToEndMinutes: number;
+    timeToBegin: string;
+    timeToEnd: string;
     description: string;
 
-    constructor() {        
+    constructor() {
+        this.id = new Date().getTime();     
         this.title = "";
         this.date = new Date();
-        this.timeToBeginHour = 0;
-        this.timeToBeginMinutes = 0;
-        this.timeToEndHour = 0;
-        this.timeToEndMinutes = 0;
+        this.timeToBegin = "";
+        this.timeToEnd = "";
         this.description = "";
     }
 }

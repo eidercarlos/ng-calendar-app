@@ -18,8 +18,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 import { MainCalendarViewComponent } from './main-calendar-view/main-calendar-view.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AppointmentDialogComponent } from './appointment-dialog/appointment-dia
     MatBadgeModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    FormsModule
   ],
   providers: [MainCalendarViewComponent, DatePipe],
   bootstrap: [AppComponent]

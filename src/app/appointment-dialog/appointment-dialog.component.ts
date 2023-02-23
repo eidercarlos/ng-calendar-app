@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { appointment } from '../classes/appointment';
+import { CalendarControlService } from '../services/calendar-control.service';
 
 @Component({
   selector: 'app-appointment-dialog',
@@ -10,7 +11,8 @@ import { appointment } from '../classes/appointment';
 export class AppointmentDialogComponent {
     currentAppointment: appointment;    
 
-    constructor(public datepipe: DatePipe) {
+    constructor(private datepipe: DatePipe, 
+      private calendarService: CalendarControlService) {
       this.currentAppointment = new appointment(); 
       // let currentDateTime = this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm');  
       // console.log(currentDateTime);    
@@ -20,6 +22,7 @@ export class AppointmentDialogComponent {
       const currentTime = new Date();
       const endOfDay = new Date();
       endOfDay.setHours(23, 59, 59, 999); 
+      currentTime.setHours(0, 0, 0, 0); 
       
       const interval = 15; 
       const availableTimes = [];
@@ -41,6 +44,7 @@ export class AppointmentDialogComponent {
       const currentTime = new Date();
       const endOfDay = new Date();
       endOfDay.setHours(23, 59, 59, 999);
+      currentTime.setHours(0, 0, 0, 0); 
 
       const interval = 15; 
       const intervalToJump = 30; 
@@ -53,5 +57,9 @@ export class AppointmentDialogComponent {
       }
       
       return availableTimes;      
+    }
+
+    createAppointment(){
+      this.calendarService.addAppointment(this.currentAppointment);
     }
 }
