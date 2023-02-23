@@ -40,18 +40,6 @@ export class MonthCalendarViewComponent {
     this.calendarService.getAppointmentList().subscribe(appointmentList => {
         this._appointmentList = appointmentList;
     });
-    
-    let newAppointment1 = new appointment();
-    newAppointment1.date = new Date();
-    newAppointment1.timeToBegin = "10:45";
-
-    this.calendarService.addAppointment(newAppointment1);
-
-    let newAppointment2 = new appointment();
-    newAppointment2.date = new Date();
-    newAppointment2.timeToBegin = "11:30";
-
-    this.calendarService.addAppointment(newAppointment2);
   }
 
   getAppointmentListByDate(date:Date){

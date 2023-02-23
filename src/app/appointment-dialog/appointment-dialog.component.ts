@@ -66,12 +66,12 @@ export class AppointmentDialogComponent {
       return availableTimes;      
     }
     
-    createAppointment(){
-      this.calendarService.addAppointment(this.currentAppointment);
+    createAppointment(apt: appointment){
+      this.calendarService.addAppointment(apt);
     }
 
-    saveAppointment(){
-      this.calendarService.saveAppointment(this.currentAppointment)
+    saveAppointment(apt: appointment){
+      this.calendarService.saveAppointment(apt)
     }
 
     deleteAppointment(id: number){
