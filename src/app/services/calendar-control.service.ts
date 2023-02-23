@@ -4,8 +4,6 @@ import { appointment } from '../classes/appointment';
 
 const DAY_MS = 60 * 60 * 24 * 1000;
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,11 +22,22 @@ export class CalendarControlService {
   }
 
   removeAppointment(appointmentId:number){
-      const idFromList = this._appointmentList.findIndex(item => item.id == appointmentId);
-      if(idFromList > -1){
-        this._appointmentList.splice(idFromList, 1);
-        this.updateAppointmentList();
-      }  
+    const idFromList = this._appointmentList.findIndex(item => item.id == appointmentId);
+    if(idFromList > -1){
+      this._appointmentList.splice(idFromList, 1);
+      this.updateAppointmentList();
+    }  
+  }
+
+  saveAppointment(modifiedAppointment:appointment){
+    let selectedAppointment = this._appointmentList.find(item => item.id == modifiedAppointment.id);
+    if(selectedAppointment){
+      selectedAppointment.title = modifiedAppointment.title;
+      selectedAppointment.date = modifiedAppointment.date;
+      selectedAppointment.timeToBegin = modifiedAppointment.timeToBegin;
+      selectedAppointment.timeToEnd = modifiedAppointment.timeToEnd;
+      selectedAppointment.description = modifiedAppointment.description;
+    }
   }
 
   private updateAppointmentList(){

@@ -44,6 +44,8 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createAppointment()">Create</button>
+    <button mat-button mat-dialog-close (click)="deleteAppointment(currentAppointment.id)"><mat-icon>delete</mat-icon></button>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button *ngIf="!editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createAppointment()">Create</button>
+    <button *ngIf="editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveAppointment()">Save</button>
 </mat-dialog-actions>

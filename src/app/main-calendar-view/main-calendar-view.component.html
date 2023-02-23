@@ -1,27 +1,15 @@
-<li class="days-of-week" *ngFor="let day of days"> {{day}} </li>
-<li class="days" *ngFor="let date of dateList"
+<div class="days-of-week" *ngFor="let day of days"> {{day}} </div>
+<div class="days" *ngFor="let date of dateList"
     [ngClass]="{grey: !isSameMonth(date)}"
     (click)="selected.emit(date)">
     {{date | date:'d'}}
 
     <mat-chip-set>
-        <mat-chip
-            *ngFor="let appt of getAppointmentListByDate(date)">
-            {{appt.title}}
+        <mat-chip *ngFor="let appt of getAppointmentListByDate(date)"
+        (click)="openAppointmentDialog(appt)"
+        [value]="appt">
+            {{appt.timeToBegin}}
         </mat-chip>
-    </mat-chip-set>
+    </mat-chip-set>    
 
-    <!-- <mat-chip-set
-    class="example-chip"
-    cdkDropList 
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)">
-    <mat-chip
-        class="example-box"
-        cdkDrag
-        *ngFor="let appt of getAppointmentListByDate(date)">
-        {{appt.title}}
-    </mat-chip>
-    </mat-chip-set>     -->
-
-</li>
+</div>

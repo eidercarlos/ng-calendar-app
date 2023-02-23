@@ -15,7 +15,7 @@ export class AppComponent {
   date = new Date();
 
   constructor(private calendarService: CalendarControlService,
-    public appointmentDialog: MatDialog) {}
+    private appointmentDialog: MatDialog) {}
 
   ngOnInit(){
 
@@ -31,10 +31,6 @@ export class AppComponent {
 
   openAppointmentDialog() {
     const appointmentDialogRef = this.appointmentDialog.open(AppointmentDialogComponent);
-
-    appointmentDialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
   
 }

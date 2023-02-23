@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { appointment } from '../classes/appointment';
 import { CalendarControlService } from '../services/calendar-control.service';
 
@@ -9,13 +10,19 @@ import { CalendarControlService } from '../services/calendar-control.service';
   styleUrls: ['./appointment-dialog.component.scss']
 })
 export class AppointmentDialogComponent {
-    currentAppointment: appointment;    
 
-    constructor(private datepipe: DatePipe, 
+    currentAppointment: appointment; 
+    editMode: boolean = false;   
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data: appointment,
       private calendarService: CalendarControlService) {
-      this.currentAppointment = new appointment(); 
-      // let currentDateTime = this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm');  
-      // console.log(currentDateTime);    
+        if(this.data){
+          this.currentAppointment = this.data;
+          this.editMode = true;
+        } else {
+          this.currentAppointment = new appointment();
+          this.editMode = false;
+        }
     }
 
     get getAvailableTimeToBegin(){
@@ -58,8 +65,16 @@ export class AppointmentDialogComponent {
       
       return availableTimes;      
     }
-
+    
     createAppointment(){
       this.calendarService.addAppointment(this.currentAppointment);
+    }
+
+    saveAppointment(){
+      this.calendarService.saveAppointment(this.currentAppointment)
+    }
+
+    deleteAppointment(id: number){
+      this.calendarService.removeAppointment(id);      
     }
 }

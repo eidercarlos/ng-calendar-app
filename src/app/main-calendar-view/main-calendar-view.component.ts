@@ -2,11 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { appointment } from '../classes/appointment';
 import { CalendarControlService } from '../services/calendar-control.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 
-
-interface AppointmentByDayOfMonth {
-  [key: string]: any;
-}
 
 @Component({
   selector: 'app-main-calendar-view',
@@ -20,52 +18,40 @@ export class MainCalendarViewComponent {
   date = new Date();
 
   private _appointmentList: appointment[] = [];
-  private _appointmentListByDayOfMonth: AppointmentByDayOfMonth[] = [];
 
   @Output() selected = new EventEmitter();
 
-  constructor(private calendarService:CalendarControlService) { 
+  constructor(private calendarService:CalendarControlService,
+    private appointmentDialog: MatDialog) { 
     this.dateList = this.calendarService.getCalendarDays(this.date);
   }
 
   ngOnInit(){
 
-    let appointmentTest = new appointment();
-    appointmentTest.date = new Date();
-    appointmentTest.title = "TESTE";
-    
     this.calendarService.getDate().subscribe(serviceDate => {
       this.date = serviceDate;
     });
     
     this.calendarService.getDateList().subscribe(serviceDateList => {
       this.dateList = serviceDateList;
-      // this.fillAppointmentListByDayOfMonth(this.dateList);
     });
 
     this.calendarService.getAppointmentList().subscribe(appointmentList => {
         this._appointmentList = appointmentList;
     });
 
+    let newAppointment1 = new appointment();
+    newAppointment1.date = new Date();
+    newAppointment1.timeToBegin = "10:45";
+
+    this.calendarService.addAppointment(newAppointment1);
+
+    let newAppointment2 = new appointment();
+    newAppointment2.date = new Date();
+    newAppointment2.timeToBegin = "11:30";
+
+    this.calendarService.addAppointment(newAppointment2);
   }
-
-  /*
-  fillAppointmentListByDayOfMonth(dateList: Date[]){
-      this._appointmentListByDayOfMonth = [];
-      dateList.forEach(date => {
-          if(this.isSameMonth(date)){
-            const currentAppointment = this._appointmentList.find(apt => 
-              apt.date.getFullYear() === date.getFullYear()
-              && apt.date.getMonth() === date.getMonth()
-              && apt.date.getDay() === date.getDay())
-
-            if(currentAppointment){
-              this._appointmentListByDayOfMonth[date.getDay()] = currentAppointment;
-            }
-          }
-      });
-  } 
-  */
 
   getAppointmentListByDate(date:Date){
 
@@ -83,13 +69,14 @@ export class MainCalendarViewComponent {
     return date.getMonth() === this.date.getMonth();
   }
 
-  // isSameYear(date:Date){
-  //   return date.getFullYear() === this.date.getFullYear();
-  // }
+  openAppointmentDialog(selectedAppointment: appointment){
+    
+    const appointmentDialogRef = this.appointmentDialog
+    .open(AppointmentDialogComponent,{
+      data: selectedAppointment      
+    });
 
-  // isSameDay(date:Date){
-  //   return date.getDay() === this.date.getDay();
-  // }
+  }
 
   // drop(event: CdkDragDrop<appointment[]>) {
   //   moveItemInArray(this.vegetables, event.previousIndex, event.currentIndex);

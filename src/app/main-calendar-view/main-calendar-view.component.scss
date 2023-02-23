@@ -1,21 +1,23 @@
-ul { margin: 0; padding: 0; list-style: none;}
-
-li {
-  display: inline-block; 
+div {
+  position: relative;
+  display: inline-flex; 
   border: 1px solid #ccc;
   width: calc(100%/7 - 2px);  
   text-align: center;  
 }
 
-li.days{
-    height: calc(100%/6 - 16px);
-    cursor: pointer;
+div.days{
+  height: calc(100%/6 - 16px);
 }
 
-li.days-of-week {
-    font-weight: bold; 
+div.days-of-week {
+  font-weight: bold; 
 }
 
-li.grey {color: #ccc}
+div.grey {color: #ccc}
 
-li:hover {background-color: #ccc;}
+div:hover {background-color: #ccc;}
+
+.mat-chip{
+  cursor: pointer;
+}
