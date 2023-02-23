@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { appointment } from '../classes/appointment';
 import { CalendarControlService } from '../services/calendar-control.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 
@@ -15,6 +15,8 @@ export class MonthCalendarViewComponent {
   dateList: Array<Date> = [];
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   date = new Date();
+
+  appointmentsDropListData : appointment[] = [];
 
   private _appointmentList: appointment[] = [];
 
@@ -38,7 +40,7 @@ export class MonthCalendarViewComponent {
     this.calendarService.getAppointmentList().subscribe(appointmentList => {
         this._appointmentList = appointmentList;
     });
-
+    
     let newAppointment1 = new appointment();
     newAppointment1.date = new Date();
     newAppointment1.timeToBegin = "10:45";
@@ -77,8 +79,8 @@ export class MonthCalendarViewComponent {
 
   }
 
-  // drop(event: CdkDragDrop<appointment[]>) {
-  //   moveItemInArray(this.vegetables, event.previousIndex, event.currentIndex);
-  // }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.appointmentsDropListData, event.previousIndex, event.currentIndex);
+  }
 
 }

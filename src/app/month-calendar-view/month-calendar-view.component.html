@@ -1,13 +1,16 @@
 <div class="days-of-week" *ngFor="let day of days"> {{day}} </div>
 <div class="days" *ngFor="let date of dateList"
     [ngClass]="{grey: !isSameMonth(date)}"
-    (click)="selected.emit(date)">
+    (click)="selected.emit(date)"
+    cdkDropList
+    (cdkDropListDropped)="drop($event)">
     {{date | date:'d'}}
-
+    
     <mat-chip-set>
         <mat-chip *ngFor="let appt of getAppointmentListByDate(date)"
         (click)="openAppointmentDialog(appt)"
-        [value]="appt">
+        [value]="appt"
+        cdkDrag>
             {{appt.timeToBegin}}
         </mat-chip>
     </mat-chip-set>    

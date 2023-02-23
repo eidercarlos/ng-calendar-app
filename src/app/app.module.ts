@@ -21,9 +21,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MonthCalendarViewComponent } from './month-calendar-view/month-calendar-view.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WeekCalendarViewComponent } from './week-calendar-view/week-calendar-view.component';
 import { DayCalendarViewComponent } from './day-calendar-view/day-calendar-view.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { DayCalendarViewComponent } from './day-calendar-view/day-calendar-view.
     MatDatepickerModule,
     MatSelectModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [MonthCalendarViewComponent, DatePipe],
   bootstrap: [AppComponent]

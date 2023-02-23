@@ -1,18 +1,19 @@
 <h2 mat-dialog-title>New Appointment</h2>
 <mat-dialog-content class="mat-typography">
 
-    <form class="example-form">
+    <form class="example-form" #formValidation="ngForm">
 
         <mat-form-field class="example-full-width">
             <mat-label>Title</mat-label>
             <input matInput placeholder="Ex. A meeting with Joseph"
             [(ngModel)]="currentAppointment.title"
-            name="title">
+            name="title"
+            required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
             <mat-label>Choose a date</mat-label>
-            <input name="date" matInput [matDatepicker]="picker" [(ngModel)]="currentAppointment.date">
+            <input name="date" matInput [matDatepicker]="picker" [(ngModel)]="currentAppointment.date" required>
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>           
@@ -20,14 +21,14 @@
 
         <mat-form-field>
             <mat-label>Begin:</mat-label>
-            <mat-select name="selectTimeToBegin" [(ngModel)]="currentAppointment.timeToBegin">
+            <mat-select name="selectTimeToBegin" [(ngModel)]="currentAppointment.timeToBegin" required>
                 <mat-option *ngFor="let availableTimeToBegin of getAvailableTimeToBegin" [value]="availableTimeToBegin">{{availableTimeToBegin}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>End:</mat-label>
-            <mat-select name="selectTimeToEnd" [(ngModel)]="currentAppointment.timeToEnd">
+            <mat-select name="selectTimeToEnd" [(ngModel)]="currentAppointment.timeToEnd" required>
                 <mat-option *ngFor="let availableTimeToEnd of getAvailableTimeToEnd" [value]="availableTimeToEnd">{{availableTimeToEnd}}</mat-option>
             </mat-select>
         </mat-form-field>        
@@ -46,6 +47,6 @@
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close (click)="deleteAppointment(currentAppointment.id)"><mat-icon>delete</mat-icon></button>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button *ngIf="!editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createAppointment()">Create</button>
-    <button *ngIf="editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveAppointment()">Save</button>
+    <button [disabled]="!formValidation.valid" *ngIf="!editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createAppointment()">Create</button>
+    <button [disabled]="!formValidation.valid" *ngIf="editMode" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveAppointment()">Save</button>
 </mat-dialog-actions>

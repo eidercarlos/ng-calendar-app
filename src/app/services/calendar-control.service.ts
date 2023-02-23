@@ -29,6 +29,11 @@ export class CalendarControlService {
     }  
   }
 
+  clearAppointmentList(){
+    this._appointmentList = [];
+    this.updateAppointmentList();
+  }
+
   saveAppointment(modifiedAppointment:appointment){
     let selectedAppointment = this._appointmentList.find(item => item.id == modifiedAppointment.id);
     if(selectedAppointment){
@@ -111,13 +116,5 @@ export class CalendarControlService {
   private range(start: number, end: number, length = end - start + 1) {
     return Array.from({ length }, (_, i) => start + i)
   }  
-
-  /*
-  getAllDays(date = new Date()) {
-    const calStartTime =  this.getCalendarStartDay(date).getTime();
-    return this.range(0, 41)
-      .map(num => new Date(calStartTime + DAY_MS * num));
-  } 
-  */ 
 
 }
