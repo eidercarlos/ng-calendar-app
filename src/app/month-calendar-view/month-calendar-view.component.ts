@@ -5,13 +5,12 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 
-
 @Component({
-  selector: 'app-main-calendar-view',
-  templateUrl: './main-calendar-view.component.html',
-  styleUrls: ['./main-calendar-view.component.scss']
+  selector: 'app-month-calendar-view',
+  templateUrl: './month-calendar-view.component.html',
+  styleUrls: ['./month-calendar-view.component.scss']
 })
-export class MainCalendarViewComponent {
+export class MonthCalendarViewComponent {
 
   dateList: Array<Date> = [];
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

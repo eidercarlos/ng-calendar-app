@@ -19,15 +19,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
-import { MainCalendarViewComponent } from './main-calendar-view/main-calendar-view.component';
+import { MonthCalendarViewComponent } from './month-calendar-view/month-calendar-view.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { WeekCalendarViewComponent } from './week-calendar-view/week-calendar-view.component';
+import { DayCalendarViewComponent } from './day-calendar-view/day-calendar-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainCalendarViewComponent,
+    MonthCalendarViewComponent,
     AppointmentDialogComponent,
+    WeekCalendarViewComponent,
+    DayCalendarViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { FormsModule } from '@angular/forms';
     MatChipsModule,
     FormsModule
   ],
-  providers: [MainCalendarViewComponent, DatePipe],
+  providers: [MonthCalendarViewComponent, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
+import { EnumViewOptions } from './classes/enum-view-options';
 import { CalendarControlService } from './services/calendar-control.service';
 
 @Component({
@@ -10,12 +12,15 @@ import { CalendarControlService } from './services/calendar-control.service';
 })
 export class AppComponent {
 
-  title = 'ng-calendar-app';
-  
+  selectedViewOptions: EnumViewOptions = EnumViewOptions.Month;
+  enumViewOptions = EnumViewOptions;
   date = new Date();
 
   constructor(private calendarService: CalendarControlService,
-    private appointmentDialog: MatDialog) {}
+    private appointmentDialog: MatDialog,
+    private router: Router) {
+      this.router.navigate(['../', this.selectedViewOptions.valueOf()]);
+    }
 
   ngOnInit(){
 
@@ -33,4 +38,9 @@ export class AppComponent {
     const appointmentDialogRef = this.appointmentDialog.open(AppointmentDialogComponent);
   }
   
+  navigateTo(routeValue: string){
+    console.log(routeValue);
+    this.router.navigate(['../',routeValue]);
+  }
+
 }

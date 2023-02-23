@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MainViewRoutingModule } from './main-view-routing.module';
-
+import { MonthViewRoutingModule } from './month-view-routing.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MainViewRoutingModule
+    MonthViewRoutingModule
   ]
 })
-export class MainViewModule { }
+export class MonthViewModule { }
